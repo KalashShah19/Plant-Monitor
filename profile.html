@@ -1,0 +1,85 @@
+<html>
+  <head> 
+    <title> Firebase </title>
+  </head>
+  <body>
+    <center>
+    <h1> Firebase </h1>
+    <h3> Data :</h3>
+    <table>
+      <tr>
+        <th> Name : </th>
+        <td> <p id="fname">  </td>
+      </tr>
+      <tr>
+        <th> Surname : </th>
+        <td> <p id="lname">  </td>
+      </tr>
+      <tr>
+        <th> Number : </th>
+        <td> <p id="num">  </td>
+      </tr>
+      <tr>
+        <th> Email : </th>
+        <td> <p id="email">  </td>
+      </tr>
+      <tr>
+        <th> Password : </th>
+        <td> <p id="pass">  </td>
+      </tr>
+      <tr>
+        <th> Address : </th>
+        <td> <p id="address">  </td>
+      </tr>
+      <tr>
+        <th> Pin Code : </th>
+        <td> <p id="pincode">  </td>
+      </tr>
+      <tr>
+        <th> Gender : </th>
+        <td> <p id="gender">  </td>
+      </tr>
+    </table>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+    import { getDatabase, ref, onValue, set, child, update, remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCOW9_miFUECVcEJJnBt1ep-ISA8MWv9A4",
+      authDomain: "plant-monitor-19.firebaseapp.com",
+      databaseURL: "https://plant-monitor-19-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "plant-monitor-19",
+      storageBucket: "plant-monitor-19.appspot.com",
+      messagingSenderId: "879511971757",
+      appId: "1:879511971757:web:ba44479807a63a5ea7e324"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    var db = getDatabase();
+
+    var connect_db = ref(db, 'user/' + '1');
+    var name, surname, number;
+    onValue(connect_db, (snapshot)=>{
+      document.getElementById('fname').innerText = snapshot.val().fname;
+      document.getElementById('lname').innerText = snapshot.val().lname;
+      document.getElementById('num').innerText = snapshot.val().number;
+      document.getElementById('email').innerText = snapshot.val().email;
+      document.getElementById('pass').innerText = snapshot.val().password;
+      document.getElementById('address').innerText = snapshot.val().address;
+      document.getElementById('pincode').innerText = snapshot.val().pincode;
+      document.getElementById('gender').innerText = snapshot.val().gender;
+    })
+
+    
+</script>
+
+</center>
+</body>
+</html>
