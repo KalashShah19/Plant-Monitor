@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head> 
+    <title> Test </title>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <center>
+      <script type="text/javascript" src="js/sjcl.js"></script>
+      <script type="text/javascript" src="js/sha256.js"></script>
+      <script type="text/javascript">
+        var bitArray = sjcl.hash.sha256.hash("K");
+        var digest_sha256 = sjcl.codec.hex.fromBits(bitArray);
+        console.log(digest_sha256);
+      </script>
+</center>
+</body>
+</html>
