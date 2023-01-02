@@ -341,7 +341,7 @@ http://www.tooplate.com/view/2098-health
   }
 
   .navbar-default .navbar-nav li a {
-    color: green;
+    color: white;
     font-size: 15px;
     font-weight: 500;
     padding-right: 20px;
@@ -351,19 +351,19 @@ http://www.tooplate.com/view/2098-health
   }
 
   .navbar-default .navbar-nav > li a:hover {
-    color: black !important;
+    color: lightgreen !important;
   }
 
   .navbar-default .navbar-nav > li > a:hover,
   .navbar-default .navbar-nav > li > a:focus {
-    color: black;
+    color: lightgreen;
     background-color: transparent;
   }
 
   .navbar-default .navbar-nav > .active > a,
   .navbar-default .navbar-nav > .active > a:hover,
   .navbar-default .navbar-nav > .active > a:focus {
-    color: black;
+    color: yellow;
     background-color: transparent;
   }
 
