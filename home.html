@@ -58,7 +58,7 @@
                <li><a href="home.html" class="smoothScroll"> | Home | </a></li>
                <li><a href="profile.html" class="smoothScroll"> | Profile | </a></li>
                <li><a href="checkup.php" class="smoothScroll"> | Checkup | </a></li>
-               <li><a href="index.html" id="logout" class="smoothScroll"> | Logout | </a></li>
+               <li><a href="index.html" class="logout" class="smoothScroll"> | Logout | </a></li>
           </ul>
      </div>
 
@@ -72,7 +72,7 @@
         <ul>
             <li> <a href="checkup.php"> Check Your Plant's Health </a> </li>
             <li> <a href="profile.html"> Update Your Profile </a> </li>
-            <li> <a href="index.html"> Logout </a> </li>
+            <li> <a href="index.html" class="logout"> Logout </a> </li>
         </ul>
     </h3>
     
@@ -113,7 +113,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
-     $("#logout").click(function(){
+     $(".logout").click(function(){
           sessionStorage.clear();
           alert("Logging Out...");
      })

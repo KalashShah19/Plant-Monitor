@@ -96,20 +96,27 @@
         var password = document.getElementById('password').value;
         var bitArray = sjcl.hash.sha256.hash(password);
         var hash = sjcl.codec.hex.fromBits(bitArray);
+        var login = 0;
 
       // alert(email);
       for(id in data){
           // document.write(data[id].fname + " " + data[id].lname + " " + data[id].number + " " + data[id].email + " " + data[id].password + " " + data[id].address + " " + data[id].pincode + " " + data[id].gender + " " );
           // alert(data[1].email);
           if(email == data[id].email && hash == data[id].password){
-            document.location.href="home.html";
-            sessionStorage.setItem("user", data[id].fname);
-            alert("Login Successfull");
+            login=1;
+            break;
           }
-          else{
-              alert("Login Failed");
-          }
-      }
+
+        }
+        if(login == 1){
+          document.location.href="home.html";
+          sessionStorage.setItem("user", data[id].fname);
+          sessionStorage.setItem("id", data[id].id);
+          sessionStorage.setItem("welcome", "Login Succesfull!");
+        }
+        else{
+          alert("Login Failed");
+        }
     });
   </script>
 

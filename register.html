@@ -90,33 +90,90 @@
     </tr>
 	<tr>
         <td><label for="gender" style="color: green;"> Gender </label></td>
- 	<td> Male : <input type="radio" name="gender" value="Male"> <br>
-        Female : <input type="radio" name="gender" value="Feale"> <br>
-	Other : <input type="radio" name="gender" value="Other"> </td>
+ 	<td> Male : <input type="radio" id="gender" name="gender" value="Male"> <br>
+        Female : <input type="radio" id="gender" name="gender" value="Feale"> <br>
+	Other : <input type="radio" name="gender" id="gender" value="Other"> </td>
 	</tr>
     <tr>
-        <td><input type="submit" onclick="reg()" id="register" name="submit" value="Register" style="width: 120px;height:40px; font-size:large; background-color: green; color: white;"></td>
+        <td><input type="submit" id="register" name="submit" value="Register" style="width: 120px;height:40px; font-size:large; background-color: green; color: white;"></td>
         <td> <a href=""> Login to Existing Account <- </a></td>
         </tr>
     </table>
     </form>
     </center>
+    <script type="text/javascript" src="js/sjcl.js"></script>
+    <script type="text/javascript" src="js/sha256.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+      import { getDatabase, ref, onValue, set, child, update, remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
-        <script>
-        function reg(){
-            var fname, lname, email, number, password, confirm, address, pincode, gender;
-            fname = document.getElementById('fname').value;
-            lname = document.getElementById('lname').value;
-            email = document.getElementById('email').value;
-            number = document.getElementById('number').value;
-            password = document.getElementById('pass').value;
-            confirm = document.getElementById('cpass').value;
-            address = document.getElementById('address').value;
-            pincode = document.getElementById('pincode').value;
-            gender = document.getElementById('gender').value;
-            
-            
+      const firebaseConfig = {
+        apiKey: "AIzaSyCOW9_miFUECVcEJJnBt1ep-ISA8MWv9A4",
+        authDomain: "plant-monitor-19.firebaseapp.com",
+        databaseURL: "https://plant-monitor-19-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "plant-monitor-19",
+        storageBucket: "plant-monitor-19.appspot.com",
+        messagingSenderId: "879511971757",
+        appId: "1:879511971757:web:ba44479807a63a5ea7e324"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      var db = getDatabase();
+      var connect_db = ref(db, 'user/');
+      export var data;
+        $("#register").click(function(){
+        function writeUserData(userId, fname, lname, number, email, hash, address, pincode, gender) {
+          const db = getDatabase();
+          set(ref(db, 'user/' + userId), {
+            id: userId,
+            fname: fname,
+            lname: lname,
+            email: email,
+            password : hash,
+            number: number,
+            address: address,
+            pincode: pincode,
+            gender : gender,
+          });
         }
+
+          var id, fname, lname, email, number, password, confirm, address, pincode, gender;
+          var r = 0;
+          id = Math.floor(Math.random() * 99999);
+          fname = document.getElementById('fname').value;
+          lname = document.getElementById('lname').value;
+          email = document.getElementById('email').value;
+          number = document.getElementById('number').value;
+          password = document.getElementById('pass').value;
+          confirm = document.getElementById('cpass').value;
+          address = document.getElementById('address').value;
+          pincode = document.getElementById('pincode').value;
+          gender = document.getElementById('gender').value;
+          var bitArray = sjcl.hash.sha256.hash(password);
+          var hash = sjcl.codec.hex.fromBits(bitArray);
+
+          onValue(connect_db, (snapshot)=>{
+            data = snapshot.val();
+          });
+          for(id in data){
+            // alert("in");
+            if(email == data[id].email){
+              r=1;
+              break;
+            }
+            alert("out");
+          }
+        
+          if(r==0){
+            writeUserData( id, fname, lname, number, email, hash, address, pincode, gender );
+            alert("Account Registered Successfully!");
+          }
+          else {
+            alert('Email is Already used.');
+          }
+        });
     </script>
 
      <!-- FOOTER -->

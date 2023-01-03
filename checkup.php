@@ -72,7 +72,7 @@
                  <li><a href="home.html" class="smoothScroll active"> | Home | </a></li>
                  <li><a href="profile.html" class="smoothScroll active"> | Profile | </a></li>
                  <li><a href="checkup.php" class="smoothScroll"> | Checkup | </a></li>
-                 <li><a href="index.html" class="smoothScroll"> | Logout | </a></li>
+                 <li><a href="index.html" id="logout" class="smoothScroll"> | Logout | </a></li>
             </ul>
        </div>
 
@@ -110,12 +110,12 @@
         </div>
         <div class="col-6 col-sm-4"> 
             <h3> Water </h3>
-            <progress name="npk" id="water" class="" value="40" max="100"> </progress>
+            <progress name="water" id="water" class="" value="30" max="100"> </progress>
             <p> Bad </p>
         </div>
         <div class="col-6 col-sm-4">
             <h3> PH </h3>
-            <progress name="npk" id="ph" class="" value="50" max="100"> </progress>
+            <progress name="ph" id="ph" class="" value="50" max="100"> </progress>
             <p> Good </p>
         </div>
         </div>
@@ -139,8 +139,8 @@
           return ((x-min)*(x-max) <= 0);
        }
         var npk = document.getElementById('npk').value;
-        var water = document.getElementById('ph').value;
-        var ph = document.getElementById('water').value;
+        var water = document.getElementById('water').value;
+        var ph = document.getElementById('ph').value;
         
         if( npk >= 1 && npk < 50){
           document.getElementById('npk').classList.add("red");
@@ -151,28 +151,33 @@
         if(npk > 70 ){
           document.getElementById('npk').classList.add("green");
         }
-
-        if( inRange(water, 1, 49)){
+        
+        if( water >= 1 && water < 50){
           document.getElementById('water').classList.add("red");
         }
-        if(inRange(water, 50, 70)){
+        if( water <= 70 && water >= 50 ){
           document.getElementById('water').classList.add("yellow");
         }
-        if(water > 70 )
-        {
+        if( water > 70 ){
           document.getElementById('water').classList.add("green");
         }
-
-        if( inRange(ph, 1, 49)){
+        if( ph >= 1 && ph < 50){
           document.getElementById('ph').classList.add("red");
         }
-        if( inRange(ph, 50, 70) ){
+        if( ph <= 70 && ph >= 50 ){
           document.getElementById('ph').classList.add("yellow");
         }
-        if(ph > 70 )
-        {
+        if( ph > 70 ){
           document.getElementById('ph').classList.add("green");
         }
+
       </script>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script>
+        $("#logout").click(function(){
+              sessionStorage.clear();
+              alert("Logging Out...");
+        })
+    </script>
     </body>
   </html>

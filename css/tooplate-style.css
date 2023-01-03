@@ -363,7 +363,7 @@ http://www.tooplate.com/view/2098-health
   .navbar-default .navbar-nav > .active > a,
   .navbar-default .navbar-nav > .active > a:hover,
   .navbar-default .navbar-nav > .active > a:focus {
-    color: yellow;
+    color: black;
     background-color: transparent;
   }
 
