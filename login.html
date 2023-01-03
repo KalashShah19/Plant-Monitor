@@ -58,11 +58,7 @@
 
   <!-- Javascipt and jQuery Coede -->
   <script type="text/javascript" src="js/sjcl.js"></script>
-      <script type="text/javascript" src="js/sha256.js"></script>
-      <script type="text/javascript">
-        var bitArray = sjcl.hash.sha256.hash("K");
-        var digest_sha256 = sjcl.codec.hex.fromBits(bitArray);
-      </script>
+  <script type="text/javascript" src="js/sha256.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script type="module">
     
@@ -106,8 +102,8 @@
           // document.write(data[id].fname + " " + data[id].lname + " " + data[id].number + " " + data[id].email + " " + data[id].password + " " + data[id].address + " " + data[id].pincode + " " + data[id].gender + " " );
           // alert(data[1].email);
           if(email == data[id].email && hash == data[id].password){
-            document.location.href="./home.html";
-            sessionStorage.setItem("user", data[id].fname);
+            document.location.href="home.html";
+            // sessionStorage.setItem("user", data[id].fname);
             alert("Login Successfull");
           }
           else{
