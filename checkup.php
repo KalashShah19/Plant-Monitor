@@ -21,6 +21,31 @@
       table, tr, td, th {
           padding: 5px;
       }
+
+      progress.red{
+        color:red;
+      }
+      progress.red[value] {color:red} /* IE10 */
+      progress.red::-webkit-progress-bar-value {background-color:red}
+      progress.red::-webkit-progress-value {background-color:red}
+      progress.red::-moz-progress-bar {background-color:red}
+
+      progress.green{
+        color:green;
+      }
+      progress.green[value] {color:green} /* IE10 */
+      progress.green::-webkit-progress-bar-value {background-color:green}
+      progress.green::-webkit-progress-value {background-color:green}
+      progress.green::-moz-progress-bar {background-color:green}
+
+      progress.yellow{
+        color:yellow;
+      }
+      progress.yellow[value] {color:yellow} /* IE10 */
+      progress.yellow::-webkit-progress-bar-value {background-color:yellow}
+      progress.yellow::-webkit-progress-value {background-color:yellow}
+      progress.yellow::-moz-progress-bar {background-color:yellow}
+
     </style>
   </head>
 
@@ -80,26 +105,23 @@
         <div class="row">
           <div class="col-6 col-sm-4">
             <h3> NPK </h3>
-            <progress name="npk" id="npk" value="40" max="100"> </progress>
-            <p> Good </p>
+            <progress name="npk" id="npk" class="" value="80" max="100"> </progress>
+            <p> Great </p>
         </div>
         <div class="col-6 col-sm-4"> 
             <h3> Water </h3>
-            <progress name="npk" id="npk" value="40" max="100"> </progress>
-            <p> Good </p>
+            <progress name="npk" id="water" class="" value="40" max="100"> </progress>
+            <p> Bad </p>
         </div>
         <div class="col-6 col-sm-4">
             <h3> PH </h3>
-            <progress name="npk" id="npk" value="40" max="100"> </progress>
+            <progress name="npk" id="ph" class="" value="50" max="100"> </progress>
             <p> Good </p>
         </div>
         </div>
       </div>
 
       <h3> Your Plant Needs :-  </h3> <br>
-        <p> > Water</p>
-        <p> > Water</p>
-        <p> > Water</p>
         <p> > Water</p>
       </center>
 </section>
@@ -111,5 +133,46 @@
         <h3>Copyright &copy; 2022 Plant Monitor </h3>
         </div>
       </footer>
+
+      <script>
+        function inRange(x, min, max) {
+          return ((x-min)*(x-max) <= 0);
+       }
+        var npk = document.getElementById('npk').value;
+        var water = document.getElementById('ph').value;
+        var ph = document.getElementById('water').value;
+        
+        if( npk >= 1 && npk < 50){
+          document.getElementById('npk').classList.add("red");
+        }
+        if( npk <= 70 && npk >= 50 ){
+          document.getElementById('npk').classList.add("yellow");
+        }
+        if(npk > 70 ){
+          document.getElementById('npk').classList.add("green");
+        }
+
+        if( inRange(water, 1, 49)){
+          document.getElementById('water').classList.add("red");
+        }
+        if(inRange(water, 50, 70)){
+          document.getElementById('water').classList.add("yellow");
+        }
+        if(water > 70 )
+        {
+          document.getElementById('water').classList.add("green");
+        }
+
+        if( inRange(ph, 1, 49)){
+          document.getElementById('ph').classList.add("red");
+        }
+        if( inRange(ph, 50, 70) ){
+          document.getElementById('ph').classList.add("yellow");
+        }
+        if(ph > 70 )
+        {
+          document.getElementById('ph').classList.add("green");
+        }
+      </script>
     </body>
   </html>

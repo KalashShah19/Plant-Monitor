@@ -103,7 +103,7 @@
           // alert(data[1].email);
           if(email == data[id].email && hash == data[id].password){
             document.location.href="home.html";
-            // sessionStorage.setItem("user", data[id].fname);
+            sessionStorage.setItem("user", data[id].fname);
             alert("Login Successfull");
           }
           else{

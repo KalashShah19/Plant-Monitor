@@ -93,9 +93,9 @@
     </tr>
   <tr>
         <td><label for="gender" style="color: green;"> Gender </label></td>
-  <td> Male : <input type="radio" name="gender" value="Male"> <br>
-        Female : <input type="radio" name="gender" value="Feale"> <br>
-  Other : <input type="radio" name="gender" value="Other"> </td>
+  <td> Male : <input type="radio" id="male" name="gender" value="Male"> <br>
+        Female : <input type="radio" id="female" name="gender" value="Female"> <br>
+  Other : <input type="radio" id="other" name="gender" value="Other"> </td>
   </tr>
     <tr>
         <td><input type="submit" id="save" name="save" value="Save" style="width: 120px;height:40px; font-size:large; background-color: green; color: white;"></td>
@@ -130,14 +130,22 @@
     var connect_db = ref(db, 'user/' + '1');
     var name, surname, number;
     onValue(connect_db, (snapshot)=>{
-      document.getElementById('fname').innerText = snapshot.val().fname;
-      document.getElementById('lname').innerText = snapshot.val().lname;
-      document.getElementById('num').innerText = snapshot.val().number;
-      document.getElementById('email').innerText = snapshot.val().email;
-      document.getElementById('pass').innerText = snapshot.val().password;
-      document.getElementById('address').innerText = snapshot.val().address;
-      document.getElementById('pincode').innerText = snapshot.val().pincode;
-      document.getElementById('gender').innerText = snapshot.val().gender;
+      document.getElementById('fname').value = snapshot.val().fname;
+      document.getElementById('lname').value = snapshot.val().lname;
+      document.getElementById('number').value = snapshot.val().number;
+      document.getElementById('email').value = snapshot.val().email;
+      document.getElementById('address').value = snapshot.val().address;
+      document.getElementById('pincode').value = snapshot.val().pincode;
+      var gender = snapshot.val().gender;
+      if(gender == "Male"){
+          document.getElementById("male").checked = true;
+      }
+      if(gender == "Female"){
+          document.getElementById("female").checked = true;
+      }
+      if(gender == "Other"){
+          document.getElementById("other").checked = true;
+      }
     })
 
     
