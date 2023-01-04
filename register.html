@@ -123,56 +123,59 @@
       var db = getDatabase();
       var connect_db = ref(db, 'user/');
       export var data;
-        $("#register").click(function(){
-        function writeUserData(userId, fname, lname, number, email, hash, address, pincode, gender) {
-          const db = getDatabase();
-          set(ref(db, 'user/' + userId), {
-            id: userId,
-            fname: fname,
-            lname: lname,
-            email: email,
-            password : hash,
-            number: number,
-            address: address,
-            pincode: pincode,
-            gender : gender,
-          });
-        }
+      var id, fname, lname, email, number, password, confirm, address, pincode, gender;
+      var r = 0;
+      
 
-          var id, fname, lname, email, number, password, confirm, address, pincode, gender;
-          var r = 0;
-          id = Math.floor(Math.random() * 99999);
-          fname = document.getElementById('fname').value;
-          lname = document.getElementById('lname').value;
-          email = document.getElementById('email').value;
-          number = document.getElementById('number').value;
-          password = document.getElementById('pass').value;
-          confirm = document.getElementById('cpass').value;
-          address = document.getElementById('address').value;
-          pincode = document.getElementById('pincode').value;
-          gender = document.getElementById('gender').value;
-          var bitArray = sjcl.hash.sha256.hash(password);
-          var hash = sjcl.codec.hex.fromBits(bitArray);
+      function writeUserData(userId, fname, lname, number, email, hash, address, pincode, gender) {
+        set(ref(db, 'user/' + userId), {
+          id: userId,
+          fname: fname,
+          lname: lname,
+          email: email,
+          password : hash,
+          number: number,
+          address: address,
+          pincode: pincode,
+          gender : gender,
+      })};
 
-          onValue(connect_db, (snapshot)=>{
-            data = snapshot.val();
-          });
-          for(id in data){
-            // alert("in");
-            if(email == data[id].email){
-              r=1;
-              break;
+          function reg(){
+            id = Math.floor(Math.random() * 99999);
+            fname = document.getElementById('fname').value;
+            lname = document.getElementById('lname').value;
+            email = document.getElementById('email').value;
+            number = document.getElementById('number').value;
+            password = document.getElementById('pass').value;
+            confirm = document.getElementById('cpass').value;
+            address = document.getElementById('address').value;
+            pincode = document.getElementById('pincode').value;
+            gender = document.getElementById('gender').value;
+            var bitArray = sjcl.hash.sha256.hash(password);
+            var hash = sjcl.codec.hex.fromBits(bitArray);
+            onValue(connect_db, (snapshot)=>{
+              data = snapshot.val();
+            });
+            for(id in data){
+              alert("in");
+              if(email == data[id].email){
+                r=1;
+                break;
+              }
+              alert("out");
             }
-            alert("out");
+
+            if(r==0){
+              writeUserData( id, fname, lname, number, email, hash, address, pincode, gender );
+              alert("Account Registered Successfully!");
+            }
+            else {
+              alert('Email is Already used.');
+            }
           }
-        
-          if(r==0){
-            writeUserData( id, fname, lname, number, email, hash, address, pincode, gender );
-            alert("Account Registered Successfully!");
-          }
-          else {
-            alert('Email is Already used.');
-          }
+
+          $("#register").click(function(){
+            reg();
         });
     </script>
 
@@ -181,7 +184,7 @@
         <div class="container">
              <div class="row">
 
-                  <div class="col-md-10 col-sm-4">
+                  <div class="col-md-10 col-sm-4 text-align-center">
                        <div class="footer-thumb"> 
                             <h4 class="wow fadeInUp" data-wow-delay="0.4s">Contact Info</h4>
                             <p> Company </p>

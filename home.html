@@ -66,6 +66,7 @@
 </section>
 
   <center>
+     <h2> <span id="welcome"> </span> </h2>
     <h2 style="color: green;" class="wow fadeInUp"> Welcome <span id="user"> User </span> </h2>
     <p class="wow fadeInUp"> Click on What You Want to DO  :- </p> <br>
     <h3>
@@ -77,6 +78,13 @@
     </h3>
     
     <script>
+          if(sessionStorage.getItem('welcome') != null){
+               document.getElementById('welcome').innerHTML = sessionStorage.getItem('welcome');
+               setTimeout(function(){
+                    sessionStorage.setItem('welcome', "");
+                    $('#welcome').fadeOut()
+               }, 1000);
+          }
           var user = sessionStorage.getItem("user");
           document.getElementById('user').innerHTML = user;
      </script>

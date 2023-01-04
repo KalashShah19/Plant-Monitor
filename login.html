@@ -104,15 +104,15 @@
           // alert(data[1].email);
           if(email == data[id].email && hash == data[id].password){
             login=1;
+            sessionStorage.setItem("user", data[id].fname);
+            sessionStorage.setItem("id", data[id].id);
+            sessionStorage.setItem("welcome", "Login Succesfull!");
             break;
           }
-
         }
+
         if(login == 1){
-          document.location.href="home.html";
-          sessionStorage.setItem("user", data[id].fname);
-          sessionStorage.setItem("id", data[id].id);
-          sessionStorage.setItem("welcome", "Login Succesfull!");
+          document.getElementById('form').action = 'home.html';
         }
         else{
           alert("Login Failed");
@@ -123,7 +123,7 @@
   <center>
     <h2 style="color: green;"> Login </h2>
     <p> Enter Your Credentials here :-</p> <br>
-    <form method="post">
+    <form method="post" action="" id="form">
       <table> 
         <tr>
           <td><label for="email" style="color: green;"> Email </label></td>
