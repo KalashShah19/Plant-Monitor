@@ -90,9 +90,9 @@
     </tr>
 	<tr>
         <td><label for="gender" style="color: green;"> Gender </label></td>
- 	<td> Male : <input type="radio" id="gender" name="gender" value="Male"> <br>
-        Female : <input type="radio" id="gender" name="gender" value="Feale"> <br>
-	Other : <input type="radio" name="gender" id="gender" value="Other"> </td>
+ 	<td> <input type="radio" id="Male" name="gender" value="Male"> <label for="Male"> Male : </label> <br>
+       <input type="radio" id="Female" name="gender" value="Female"> <label for="Female"> Female : </label> <br>
+	    <input type="radio" name="gender" id="Other" value="Other"> <label for="Other"> Other </label> </td>
 	</tr>
     <tr>
         <td><input type="submit" id="register" name="submit" value="Register" style="width: 120px;height:40px; font-size:large; background-color: green; color: white;"></td>
@@ -150,7 +150,7 @@
             confirm = document.getElementById('cpass').value;
             address = document.getElementById('address').value;
             pincode = document.getElementById('pincode').value;
-            gender = document.getElementById('gender').value;
+            gender = document.querySelector('input[name="gender"]:checked').value;
             var bitArray = sjcl.hash.sha256.hash(password);
             var hash = sjcl.codec.hex.fromBits(bitArray);
             onValue(connect_db, (snapshot)=>{
