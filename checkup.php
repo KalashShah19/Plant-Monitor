@@ -51,19 +51,19 @@
 
   <body>
  <!-- MENU -->
- <section style="background-color: green; color:white" class="navbar navbar-default navbar-static-top" role="navigation">
+ <section style="background-color: green; color:white" class="navbar navbar-default navbar-static-top wow fadeInDown" role="navigation">
 
 
-      <div class="container">
+      <div class="container ">
            <div class="navbar-header">
-                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button class="navbar-toggle wow fadeInRight" data-toggle="collapse" data-target=".navbar-collapse">
                      <span class="icon icon-bar"></span>
                      <span class="icon icon-bar"></span>
                      <span class="icon icon-bar"></span>
                 </button>
 
                 <!-- lOGO TEXT HERE -->
-                <a href="index.html" style="color:white" class="navbar-brand"> Plant Monitor</a>
+                <a href="index.html" style="color:white" class="navbar-brand wow fadeInLeft"> Plant Monitor</a>
            </div>
 
            <!-- MENU LINKS -->
@@ -82,26 +82,48 @@
 <!-- Checkup -->
 <section>
     <center>
-        <h2> Plant Checkup </h2>
+        <h2 class="wow fadeInDown"> Plant Checkup </h2>
 
-        <form method="post" enctype="multipart/form-data"> 
+        <form method="post" class="wow fadeInUp" enctype="multipart/form-data"> 
             <h3 style="color: green;"> Upload Photo </h3> <br>
             <input type="file" name="image" id="image" style="font-size: large;" accept="image/jpg, image/jpeg, image/png"> <br>
             <input type="submit" name="check" id="check" style="background-color: green; color: white; width:80px; height:35px;font-size:large;" value="CHECK">
         </form> <br> 
         
-        <img src="" id="plant" style="height: 200px; width: 200px;" alt="Your Image">
-    <hr>
+        
+        <?php 
+        if(isset($_POST['check'])){ 
+          if(!is_uploaded_file($_FILES['image']['tmp_name'])){
+            echo "<script> alert('Upload Photo of Your Plant First!');</script>";
+          }
+          else {
+            $folder='images/';
+            $file_name = $_FILES['image']['name'];
+            $file_size = $_FILES['image']['size'];
+            $file_tmp = $_FILES['image']['tmp_name'];
+            $file_type = $_FILES['image']['type'];
+            $arr = explode('.',$_FILES['image']['name']);
+            $file_ext = strtolower(end($arr));
+            $target_file = $folder . basename($_FILES["image"]["name"]);
+            $path = $folder.$file_name;
+              
+            $extensions= array("jpeg","jpg","png");
 
-  <?php 
-    if(isset($_POST['check'])){ 
-      if(!is_uploaded_file($_FILES['image']['tmp_name'])){
-        echo "<script> alert('Upload Photo of Your Plant First!');</script>";
-      }
-      else {
+            if(in_array($file_ext,$extensions)=== false){
+              $errors[]="Extension not allowed, please choose a JPEG or PNG file.";
+            }
+            else{
+              move_uploaded_file($file_tmp, $path);
+            }
+          }
+        if(!empty($errors)==true){
+          print_r($errors);
+        }else{
       ?>
-    <p> Check Your Plant's Health Here :- </p>    
-    <div class="container">
+        <img src='images/<?php echo $file_name; ?>' id='plant' class='wow zoomIn' style='width: 200px;' alt='Your Image'>
+    <hr>
+    <p class="wow fadeInUp"> Check Your Plant's Health Here :- </p>    
+    <div class="container wow fadeInUp">
         <div class="row">
           <div class="col-6 col-sm-4">
             <h3> NPK </h3>
@@ -121,18 +143,40 @@
         </div>
       </div>
 
-      <h3> Your Plant Needs :-  </h3> <br>
-        <p> > Water</p>
+      <h3 class="wow fadeIn"> Your Plant Needs :-  </h3> <br>
+        <p class="wow fadeIn"> > Water </p> 
       </center>
 </section>
     <?php } } ?>
 
  <!-- FOOTER -->
  <footer>
-    <div style="background-color: green;color:white;text-align: center; padding: 5px; height: 80px;">
-        <h3>Copyright &copy; 2022 Plant Monitor </h3>
-        </div>
-      </footer>
+  <div class="container">
+       <div class="row">
+            <div class="col-md-10 col-sm-4 text-align-center">
+                 <div class="footer-thumb"> 
+                      <h4 class="wow fadeInUp" data-wow-delay="0.4s">Contact Info</h4>
+                      <p class="wow fadeInUp"> Company </p>
+
+                      <div class="contact-info wow fadeInUp">
+                           <p><i class="fa fa-phone"></i> 9426921383</p>
+                           <p><i class="fa fa-envelope-o"></i> <a href="#">kalashshah@gmail.com</a></p>
+                      </div>
+                 </div>
+            </div>
+
+                      <ul class="social-icon">
+                           <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                           <li><a href="#" class="fa fa-twitter"></a></li>
+                           <li><a href="#" class="fa fa-instagram"></a></li>
+                      </ul>
+                 </div>
+            </div>
+          </div>
+          <div style="background-color: green;color:white;text-align: center; padding: 5px; height: 80px;">
+            <h3>Copyright &copy; 2022 Plant Monitor
+          </div>
+    </footer>
 
       <script>
         function inRange(x, min, max) {
@@ -179,5 +223,15 @@
               alert("Logging Out...");
         })
     </script>
+     <!-- SCRIPTS -->
+     <script src="js/jquery.js"></script>
+     <script src="js/bootstrap.min.js"></script>
+     <script src="js/jquery.sticky.js"></script>
+     <script src="js/jquery.stellar.min.js"></script>
+     <script src="js/wow.min.js"></script>
+     <script src="js/smoothscroll.js"></script>
+     <script src="js/owl.carousel.min.js"></script>
+     <script src="js/custom.js"></script>
+
     </body>
   </html>

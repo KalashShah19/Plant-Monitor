@@ -28,19 +28,19 @@
 
   <div class="container">
        <div class="navbar-header">
-            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <button class="navbar-toggle wow fadeInRight" data-toggle="collapse" data-target=".navbar-collapse">
                  <span class="icon icon-bar"></span>
                  <span class="icon icon-bar"></span>
                  <span class="icon icon-bar"></span>
             </button>
 
             <!-- lOGO TEXT HERE -->
-            <a href="index.html" style="color:white" class="navbar-brand"> Plant Monitor</a>
+            <a href="index.html" style="color:white" class="navbar-brand wow fadeInLeft"> Plant Monitor</a>
        </div>
 
        <!-- MENU LINKS -->
-       <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav navbar-right">
+       <div class="collapse navbar-collapse wow fadeInRight">
+        <ul class="nav navbar-nav navbar-right wow fadeInRight">
              <li><a href="index.html" class="smoothScroll"> | Home | </a></li>
              <li><a href="index.html#about" class="smoothScroll"> | About | </a></li>
              <li><a href="index.html#team" class="smoothScroll"> | Team | </a></li>
@@ -52,10 +52,10 @@
 </section>
 
     <center>
-        <h2 style="color: green;"> Register </h2>
-        <p> Enter Your Details here :- </p> <br>
-        <table>
-      <table method="post">
+        <h2 style="color: green;" class=" wow fadeInDown"> Register </h2>
+        <p class=" wow fadeIn"> Enter Your Details here :- </p> <br>
+        <table class="wow fadeInRight">
+      <form method="post">
           <tr>
               <td><label for="fname" style="color: green;"> First Name </label></td>
               <td><input type="text" name="fname" id="fname"> </td>
@@ -183,13 +183,12 @@
      <footer data-stellar-background-ratio="5">
         <div class="container">
              <div class="row">
-
                   <div class="col-md-10 col-sm-4 text-align-center">
                        <div class="footer-thumb"> 
                             <h4 class="wow fadeInUp" data-wow-delay="0.4s">Contact Info</h4>
                             <p> Company </p>
 
-                            <div class="contact-info">
+                            <div class="contact-info wow fadeInUp">
                                  <p><i class="fa fa-phone"></i> 9426921383</p>
                                  <p><i class="fa fa-envelope-o"></i> <a href="#">kalashshah@gmail.com</a></p>
                             </div>
@@ -211,5 +210,16 @@
              </div>
         </div>
    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.sticky.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/smoothscroll.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/custom.js"></script>
+
 </body>
 </html>

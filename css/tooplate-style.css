@@ -314,7 +314,7 @@ http://www.tooplate.com/view/2098-health
   }
 
   .navbar-default .navbar-brand {
-    color: black;
+    color: white;
     font-weight: 500;
   }
 
@@ -363,7 +363,7 @@ http://www.tooplate.com/view/2098-health
   .navbar-default .navbar-nav > .active > a,
   .navbar-default .navbar-nav > .active > a:hover,
   .navbar-default .navbar-nav > .active > a:focus {
-    color: black;
+    color: white;
     background-color: transparent;
   }
 
@@ -373,7 +373,7 @@ http://www.tooplate.com/view/2098-health
   }
 
   .navbar-default .navbar-toggle .icon-bar {
-    background: #393939;
+    background: white;
     border-color: transparent;
   }
 
