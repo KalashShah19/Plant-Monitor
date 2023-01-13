@@ -72,6 +72,7 @@
                  <li><a href="home.html" class="smoothScroll active"> | Home | </a></li>
                  <li><a href="profile.html" class="smoothScroll active"> | Profile | </a></li>
                  <li><a href="checkup.php" class="smoothScroll"> | Checkup | </a></li>
+                 <li><a href="records.html" class="smoothScroll"> | Records | </a></li>
                  <li><a href="index.html" id="logout" class="smoothScroll"> | Logout | </a></li>
             </ul>
        </div>
@@ -82,13 +83,13 @@
 <!-- Checkup -->
 <section>
     <center>
-        <h2 class="wow fadeInDown"> Plant Checkup </h2>
+        <h2 class="wow fadeInDown"> Plant Checkup </h2> <hr>
 
         <form method="post" class="wow fadeInUp" enctype="multipart/form-data"> 
             <h3 style="color: green;"> Upload Photo </h3> <br>
             <input type="file" name="image" id="image" style="font-size: large;" accept="image/jpg, image/jpeg, image/png"> <br>
             <input type="submit" name="check" id="check" style="background-color: green; color: white; width:80px; height:35px;font-size:large;" value="CHECK">
-        </form> <br> 
+        </form> <br> <hr>
         
         
         <?php 
@@ -116,14 +117,16 @@
               move_uploaded_file($file_tmp, $path);
             }
           }
+
         if(!empty($errors)==true){
           print_r($errors);
         }else{
       ?>
+      <p> Your Plant - </p>
         <img src='images/<?php echo $file_name; ?>' id='plant' class='wow zoomIn' style='width: 200px;' alt='Your Image'>
     <hr>
-    <p class="wow fadeInUp"> Check Your Plant's Health Here :- </p>    
-    <div class="container wow fadeInUp">
+    <p class="wow fadeInLeft"> Check Your Plant's Health Here :- </p>    
+    <div class="container wow fadeInLeft">
         <div class="row">
           <div class="col-6 col-sm-4">
             <h3> NPK </h3>
@@ -131,8 +134,8 @@
             <p> Great </p>
         </div>
         <div class="col-6 col-sm-4"> 
-            <h3> Water </h3>
-            <progress name="water" id="water" class="" value="30" max="100"> </progress>
+            <h3> Moisture </h3>
+            <progress name="water" id="water" class="" value="30" max="100"> </progress> 
             <p> Bad </p>
         </div>
         <div class="col-6 col-sm-4">
@@ -142,9 +145,18 @@
         </div>
         </div>
       </div>
-
-      <h3 class="wow fadeIn"> Your Plant Needs :-  </h3> <br>
-        <p class="wow fadeIn"> > Water </p> 
+      <hr>
+      <div>
+        <h2 class="wow fadeInRight"> Analsys :  </h2>
+        <h3 class="wow fadeInRight" style="color:blue;"> Your Plant Needs :-  </h3> <br>
+          <p class="wow fadeInRight"> > Water </p> 
+      </div> 
+      <hr>
+      <div>  
+        <h3 class="wow fadeInRight" style="color:red"> Your Plant may have :-  </h3> <br>
+        <p class="wow fadeInRight"> > Powdery Mildew. </p> 
+      </div>
+      <hr>
       </center>
 </section>
     <?php } } ?>
