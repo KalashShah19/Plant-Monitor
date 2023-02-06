@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+     <script> 
+     $( document ).ready(function() {
+          if(sessionStorage.getItem("user") == null){
+               document.location.href="login.html";
+          }
+     });
+     </script>
 
-    <title> Plant Monitor | Checkup  </title>
+    <title> Plant Monitor | Health Detector  </title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="description" content="">
@@ -21,37 +29,30 @@
       table, tr, td, th {
           padding: 5px;
       }
-
-      button {
-        color: white;
-        background-color: green;
-        border: none;
-        width: 120px;
-        height: 70px;
-        font-size: x-large;
-      }
-
     </style>
   </head>
 
-  <body>
+  <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+
+    
+
  <!-- MENU -->
- <section style="background-color: green; color:white" class="navbar navbar-default navbar-static-top wow fadeInDown" role="navigation">
+ <section style="background-color: green; color:white" class="navbar navbar-default navbar-static-top" role="navigation">
 
 
-      <div class="container ">
-           <div class="navbar-header">
-                <button class="navbar-toggle wow fadeInRight" data-toggle="collapse" data-target=".navbar-collapse">
-                     <span class="icon icon-bar"></span>
-                     <span class="icon icon-bar"></span>
-                     <span class="icon icon-bar"></span>
-                </button>
+    <div class="container">
+         <div class="navbar-header">
+              <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                   <span class="icon icon-bar"></span>
+                   <span class="icon icon-bar"></span>
+                   <span class="icon icon-bar"></span>
+              </button>
 
-                <!-- lOGO TEXT HERE -->
-                <a href="index.html" style="color:white" class="navbar-brand wow fadeInLeft"> Plant Monitor</a>
-           </div>
+              <!-- lOGO TEXT HERE -->
+              <a href="index.html" style="color:white" class="navbar-brand wow fadeInLeft"> Plant Monitor</a>
+         </div>
 
-           <!-- MENU LINKS -->
+         <!-- MENU LINKS -->
            <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                  <li><a href="home.html" class="smoothScroll active"> | Home | </a></li>
@@ -62,22 +63,44 @@
             </ul>
        </div>
 
-      </div>
- </section>
+    </div>
+</section>
 
-<!-- Checkup -->
-<section>
     <center>
-      <h2 class="wow fadeInDown"> Plant Checkup </h2> <hr>
-      <p> What do You want to Check in Your Plant? </p>
-      <form method="post">
-        <button type="submit" formaction="npk.php" value="NPK"> NPK</button>
-        <button type="submit" formaction="water.php" value="Water"> Water </button>
-        <button type="submit" formaction="disease.php" value="Disease"> Disease </button>
-      </form>
-      
-    </center>
+    <?php 
+          if(!isset($_POST['submit'])){ ?>
+    <h2 style="color: green;" class=" wow fadeInDown"> Heath Detector  </h2>
+    <p class=" wow fadeIn"> Enter Your Plant's Info here :-</p> <br>
+    <form method="post" action="" id="form">
+      <table class=" wow fadeInRight"> 
+        <tr>
+          <td><label for="N" style="color: green;"> N </label></td>
+           <td><input type="number" name="N" id="N"> </td>
+        </tr>
+        <tr></tr>
+        <tr>
+          <td><label for="P" style="color: green;"> P </label></td>
+          <td><input type="number" name="P" id="P"></td> 
+        </tr>
+        <tr>
+            <td><label for="K" style="color: green;"> K </label></td>
+          <td><input type="number" name="K" id="K"></td>
+        </tr>
+        <tr>
+          <td colspan="2"><input type="submit" name="submit" id="ml" style="background-color: green; color: white; width:100px; height:40px;font-size:large;" value="Submit"></td>
+        </tr>
+        </table>
+    </form>
+    <?php
+          if(isset($_POST['submit'])){
+              $n = $_POST['N'];
+              $p = $_POST['P'];
+              $k = $_POST['K'];
 
+              echo "<script> document.location.href='http://snapdragon7.pythonanywhere.com'; </script>";
+          }
+    ?>
+    </center>
  <!-- FOOTER -->
  <footer>
   <div class="container">
@@ -85,7 +108,7 @@
             <div class="col-md-10 col-sm-4 text-align-center">
                  <div class="footer-thumb"> 
                       <h4 class="wow fadeInUp" data-wow-delay="0.4s">Contact Info</h4>
-                      <p class="wow fadeInUp"> Company </p>
+                      <p> Company </p>
 
                       <div class="contact-info wow fadeInUp">
                            <p><i class="fa fa-phone"></i> 9426921383</p>
@@ -106,14 +129,6 @@
             <h3>Copyright &copy; 2022 Plant Monitor
           </div>
     </footer>
-
-       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-        <script>
-        $("#logout").click(function(){
-              sessionStorage.clear();
-              alert("Logging Out...");
-        })
-    </script>
      <!-- SCRIPTS -->
      <script src="js/jquery.js"></script>
      <script src="js/bootstrap.min.js"></script>
@@ -124,5 +139,13 @@
      <script src="js/owl.carousel.min.js"></script>
      <script src="js/custom.js"></script>
 
-    </body>
-  </html>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+     $(".logout").click(function(){
+          sessionStorage.clear();
+          alert("Logging Out...");
+     })
+    </script>
+  </body>
+</html>

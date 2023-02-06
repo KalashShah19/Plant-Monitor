@@ -86,11 +86,25 @@
     var db = getDatabase();
     var id=1;
     var connect_db = ref(db, 'user/');
+    var login = ref(db, 'analytics/');
+    var num,count;
     export var data;
+
+    function loginadd(count) {
+      set(ref(db, 'analytics/'), {
+        logins: count
+      });
+    }
   
     onValue(connect_db, (snapshot)=>{
         data = snapshot.val();
       });
+
+      onValue(login, (snapshot)=>{
+        num = snapshot.val();
+        count = num["logins"];
+        count++;
+      })
 
       $("#login").click(function(){
         var email = document.getElementById('email').value; 
@@ -113,7 +127,9 @@
         }
 
         if(login == 1){
+          loginadd(count);
           document.getElementById('form').action = 'home.html';
+          // alert("Success");
         }
         else{
           alert("Login Failed");
