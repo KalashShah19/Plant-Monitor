@@ -1,0 +1,227 @@
+<html>
+    <head> 
+        <title> Plant Monitor | Register </title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="author" content="Tooplate">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <link rel="stylesheet" href="../../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../css/font-awesome.min.css">
+        <link rel="stylesheet" href="../../css/animate.css">
+        <link rel="stylesheet" href="../../css/owl.carousel.css">
+        <link rel="stylesheet" href="../../css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="../../css/tooplate-style.css">
+        <link rel="icon" type="image/x-icon" href="../../images/icon.png">
+
+        <style>
+            table, tr, td, th {
+                padding: 5px;
+            }
+          </style>
+</head>
+<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50"></body>
+
+<!-- MENU -->
+<section style="background-color: green;" class="navbar navbar-default navbar-static-top" role="navigation">
+
+  <div class="container">
+       <div class="navbar-header">
+            <button class="navbar-toggle wow fadeInRight" data-toggle="collapse" data-target=".navbar-collapse">
+                 <span class="icon icon-bar"></span>
+                 <span class="icon icon-bar"></span>
+                 <span class="icon icon-bar"></span>
+            </button>
+
+            <!-- lOGO TEXT HERE -->
+            <a href="../../index.html" style="color:white" class="navbar-brand wow fadeInLeft"> Plant Monitor</a>
+       </div>
+
+       <!-- MENU LINKS -->
+       <div class="collapse navbar-collapse wow fadeInRight">
+        <ul class="nav navbar-nav navbar-right wow fadeInRight">
+             <li><a href="../../index.html" class="smoothScroll"> | Home | </a></li>
+             <li><a href="../../index.html#about" class="smoothScroll"> | About | </a></li>
+             <li><a href="../../index.html#team" class="smoothScroll"> | Team | </a></li>
+             <li><a href="register.html" class="smoothScroll"> | Register | </a></li>
+             <li><a href="login.html" class="smoothScroll"> | Login | </a></li>
+        </ul>
+   </div>
+  </div>
+</section>
+
+    <center>
+        <h2 style="color: green;" class=" wow fadeInDown"> Register </h2>
+        <p class=" wow fadeIn"> Enter Your Details here :- </p> <br>
+        <table class="wow fadeInRight">
+      <form method="post">
+          <tr>
+              <td><label for="fname" style="color: green;"> First Name </label></td>
+              <td><input type="text" name="fname" id="fname"> </td>
+            </tr>
+            <tr>  
+                <td><label for="lname" style="color: green;"> Last Name </label></td>
+                <td><input type="text" name="lname" id="lname"> <br></td>
+            </tr>
+    <tr>
+      <td><label for="number" style="color: green;"> Mobile Number </label></td>
+      <td><input type="number" name="number" id="number"></td>
+    </tr>
+    <tr>
+        <td><label for="Email" style="color: green;"> Email </label></td>
+        <td><input type="email" name="email" id="email"></td>
+    </tr>
+    <tr>
+        <td><label for="pass" style="color: green;"> Password </label></td>
+      <td><input type="password" name="pass" id="pass"> </td>
+    </tr>
+    <tr>
+        <td><label for="cpass" style="color: green;"> Confirm Password </label></td>
+        <td><input type="password" name="cpass" id="cpass"> </td>
+    </tr>
+    <tr>
+      <td><label for="address" style="color: green;"> Address </label></td>
+      <td><input type="text" name="address" id="address"> </td>
+    </tr>
+    <tr>
+      <td><label for="pincode" style="color: green;"> Pin Code </label></td>
+      <td><input type="number" name="pincode" min="111111" max="999999" id="pincode"> </td>
+    </tr>
+	<tr>
+        <td><label for="gender" style="color: green;"> Gender </label></td>
+ 	<td> <input type="radio" id="Male" name="gender" value="Male"> <label for="Male"> Male : </label> <br>
+       <input type="radio" id="Female" name="gender" value="Female"> <label for="Female"> Female : </label> <br>
+	    <input type="radio" name="gender" id="Other" value="Other"> <label for="Other"> Other </label> </td>
+	</tr>
+    <tr>
+        <td><input type="submit" id="register" name="submit" value="Register" style="width: 120px;height:40px; font-size:large; background-color: green; color: white;"></td>
+        <td> <a href=""> Login to Existing Account <- </a></td>
+        </tr>
+    </table>
+    </form>
+    </center>
+    <script type="text/javascript" src="../../js/sjcl.js"></script>
+    <script type="text/javascript" src="../../js/sha256.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+      import { getDatabase, ref, onValue, set, child, update, remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyCOW9_miFUECVcEJJnBt1ep-ISA8MWv9A4",
+        authDomain: "plant-monitor-19.firebaseapp.com",
+        databaseURL: "https://plant-monitor-19-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "plant-monitor-19",
+        storageBucket: "plant-monitor-19.appspot.com",
+        messagingSenderId: "879511971757",
+        appId: "1:879511971757:web:ba44479807a63a5ea7e324"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      var db = getDatabase();
+      var connect_db = ref(db, 'user/');
+      export var data;
+      var id, fname, lname, email, number, password, confirm, address, pincode, gender;
+      var r = 0;
+      
+
+      function writeUserData(userId, fname, lname, number, email, hash, address, pincode, gender) {
+        set(ref(db, 'user/' + userId), {
+          id: userId,
+          fname: fname,
+          lname: lname,
+          email: email,
+          password : hash,
+          number: number,
+          address: address,
+          pincode: pincode,
+          gender : gender,
+          type: "client",
+      })};
+
+          function reg(){
+            id = Math.floor(Math.random() * 99999);
+            fname = document.getElementById('fname').value;
+            lname = document.getElementById('lname').value;
+            email = document.getElementById('email').value;
+            number = document.getElementById('number').value;
+            password = document.getElementById('pass').value;
+            confirm = document.getElementById('cpass').value;
+            address = document.getElementById('address').value;
+            pincode = document.getElementById('pincode').value;
+            gender = document.querySelector('input[name="gender"]:checked').value;
+            var bitArray = sjcl.hash.sha256.hash(password);
+            var hash = sjcl.codec.hex.fromBits(bitArray);
+            onValue(connect_db, (snapshot)=>{
+              data = snapshot.val();
+            });
+            for(id in data){
+              alert("in");
+              if(email == data[id].email){
+                r=1;
+                break;
+              }
+              alert("out");
+            }
+
+            if(r==0){
+              writeUserData( id, fname, lname, number, email, hash, address, pincode, gender );
+              alert("Account Registered Successfully!");
+            }
+            else {
+              alert('Email is Already used.');
+            }
+          }
+
+          $("#register").click(function(){
+            reg();
+        });
+    </script>
+
+     <!-- FOOTER -->
+     <footer data-stellar-background-ratio="5">
+        <div class="container">
+             <div class="row">
+                  <div class="col-md-10 col-sm-4 text-align-center">
+                       <div class="footer-thumb"> 
+                            <h4 class="wow fadeInUp" data-wow-delay="0.4s">Contact Info</h4>
+                            <p> Company </p>
+
+                            <div class="contact-info wow fadeInUp">
+                                 <p><i class="fa fa-phone"></i> 9426921383</p>
+                                 <p><i class="fa fa-envelope-o"></i> <a href="#">kalashshah@gmail.com</a></p>
+                            </div>
+                       </div>
+                  </div>
+
+                            <ul class="social-icon">
+                                 <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                                 <li><a href="#" class="fa fa-twitter"></a></li>
+                                 <li><a href="#" class="fa fa-instagram"></a></li>
+                            </ul>
+                       </div>
+                  </div>
+
+                  <div style="background-color: green;color:white;text-align: center; padding: 5px; height: 80px;">
+                    <h3>Copyright &copy; 2022 Plant Monitor
+                  </div>
+                  
+             </div>
+        </div>
+   </footer>
+
+    <!-- SCRIPTS -->
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/jquery.sticky.js"></script>
+    <script src="../../js/jquery.stellar.min.js"></script>
+    <script src="../../js/wow.min.js"></script>
+    <script src="../../js/smoothscroll.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+    <script src="../../js/custom.js"></script>
+
+</body>
+</html>
