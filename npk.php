@@ -18,17 +18,43 @@
     <meta name="author" content="Tooplate">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/tooplate-style.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="stylesheet" href="../../css/owl.carousel.css">
+    <link rel="stylesheet" href="../../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../../css/tooplate-style.css">
+    <link rel="icon" type="image/x-icon" href="../../images/icon.png">
 
     <style>
       table, tr, td, th {
           padding: 5px;
       }
+
+      progress.red{
+        color:red;
+      }
+      progress.red[value] {color:red} /* IE10 */
+      progress.red::-webkit-progress-bar-value {background-color:red}
+      progress.red::-webkit-progress-value {background-color:red}
+      progress.red::-moz-progress-bar {background-color:red}
+
+      progress.green{
+        color:green;
+      }
+      progress.green[value] {color:green} /* IE10 */
+      progress.green::-webkit-progress-bar-value {background-color:green}
+      progress.green::-webkit-progress-value {background-color:green}
+      progress.green::-moz-progress-bar {background-color:green}
+
+      progress.yellow{
+        color:yellow;
+      }
+      progress.yellow[value] {color:yellow} /* IE10 */
+      progress.yellow::-webkit-progress-bar-value {background-color:yellow}
+      progress.yellow::-webkit-progress-value {background-color:yellow}
+      progress.yellow::-moz-progress-bar {background-color:yellow}
+
     </style>
   </head>
 
@@ -37,41 +63,14 @@
     
 
  <!-- MENU -->
- <section style="background-color: green; color:white" class="navbar navbar-default navbar-static-top" role="navigation">
-
-
-    <div class="container">
-         <div class="navbar-header">
-              <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                   <span class="icon icon-bar"></span>
-                   <span class="icon icon-bar"></span>
-                   <span class="icon icon-bar"></span>
-              </button>
-
-              <!-- lOGO TEXT HERE -->
-              <a href="index.html" style="color:white" class="navbar-brand wow fadeInLeft"> Plant Monitor</a>
-         </div>
-
-         <!-- MENU LINKS -->
-           <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                 <li><a href="home.html" class="smoothScroll active"> | Home | </a></li>
-                 <li><a href="profile.html" class="smoothScroll active"> | Profile | </a></li>
-                 <li><a href="checkup.php" class="smoothScroll"> | Checkup | </a></li>
-                 <li><a href="records.html" class="smoothScroll"> | Records | </a></li>
-                 <li><a href="index.html" id="logout" class="smoothScroll"> | Logout | </a></li>
-            </ul>
-       </div>
-
-    </div>
-</section>
+ <?php
+     include 'clientheader.php';
+ ?>
 
     <center>
-    <?php 
-          if(!isset($_POST['submit'])){ ?>
     <h2 style="color: green;" class=" wow fadeInDown"> Heath Detector  </h2>
     <p class=" wow fadeIn"> Enter Your Plant's Info here :-</p> <br>
-    <form method="post" action="" id="form">
+    <form method="" action="http://snapdragon7.pythonanywhere.com" id="form">
       <table class=" wow fadeInRight"> 
         <tr>
           <td><label for="N" style="color: green;"> N </label></td>
@@ -92,14 +91,38 @@
         </table>
     </form>
     <?php
-          if(isset($_POST['submit'])){
-              $n = $_POST['N'];
-              $p = $_POST['P'];
-              $k = $_POST['K'];
-
-              echo "<script> document.location.href='http://snapdragon7.pythonanywhere.com'; </script>";
-          }
+        if(isset($_GET['N'])){
+          $n = $_GET['N'];
+          $p = $_GET['P'];
+          $k = $_GET['K'];
+          $npred = $_GET['NPred'];
+          $ppred = $_GET['PPred'];
+          $kpred = $_GET['KPred'];
+          
+          echo '<p class="wow fadeInLeft"> Check Your Plant\'s Health Here :- </p>    
+    <div class="container wow fadeInLeft">
+        <div class="row">
+          <div class="col-6 col-sm-4">
+            <h3> Nitrogen </h3>
+            <progress name="npk" id="npk" class="" value="80" max="100"> </progress>
+            <p> Great </p>
+        </div>
+        <div class="col-6 col-sm-4"> 
+            <h3> Phosphate </h3>
+            <progress name="water" id="water" class="" value="30" max="100"> </progress> 
+            <p> Bad </p>
+        </div>
+        <div class="col-6 col-sm-4">
+            <h3> Pottasium </h3>
+            <progress name="ph" id="ph" class="" value="50" max="100"> </progress>
+            <p> Good </p>
+        </div>
+        </div>
+      </div>
+      <hr>';
+        }
     ?>
+
     </center>
  <!-- FOOTER -->
  <footer>
@@ -130,14 +153,14 @@
           </div>
     </footer>
      <!-- SCRIPTS -->
-     <script src="js/jquery.js"></script>
-     <script src="js/bootstrap.min.js"></script>
-     <script src="js/jquery.sticky.js"></script>
-     <script src="js/jquery.stellar.min.js"></script>
-     <script src="js/wow.min.js"></script>
-     <script src="js/smoothscroll.js"></script>
-     <script src="js/owl.carousel.min.js"></script>
-     <script src="js/custom.js"></script>
+     <script src="../../js/jquery.js"></script>
+     <script src="../../js/bootstrap.min.js"></script>
+     <script src="../../js/jquery.sticky.js"></script>
+     <script src="../../js/jquery.stellar.min.js"></script>
+     <script src="../../js/wow.min.js"></script>
+     <script src="../../js/smoothscroll.js"></script>
+     <script src="../../js/owl.carousel.min.js"></script>
+     <script src="../../js/custom.js"></script>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
