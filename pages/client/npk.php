@@ -30,6 +30,31 @@
       table, tr, td, th {
           padding: 5px;
       }
+
+      progress.red{
+        color:red;
+      }
+      progress.red[value] {color:red} /* IE10 */
+      progress.red::-webkit-progress-bar-value {background-color:red}
+      progress.red::-webkit-progress-value {background-color:red}
+      progress.red::-moz-progress-bar {background-color:red}
+
+      progress.green{
+        color:green;
+      }
+      progress.green[value] {color:green} /* IE10 */
+      progress.green::-webkit-progress-bar-value {background-color:green}
+      progress.green::-webkit-progress-value {background-color:green}
+      progress.green::-moz-progress-bar {background-color:green}
+
+      progress.yellow{
+        color:yellow;
+      }
+      progress.yellow[value] {color:yellow} /* IE10 */
+      progress.yellow::-webkit-progress-bar-value {background-color:yellow}
+      progress.yellow::-webkit-progress-value {background-color:yellow}
+      progress.yellow::-moz-progress-bar {background-color:yellow}
+
     </style>
   </head>
 
@@ -43,8 +68,6 @@
  ?>
 
     <center>
-    <?php 
-          if(!isset($_POST['submit'])){ ?>
     <h2 style="color: green;" class=" wow fadeInDown"> Heath Detector  </h2>
     <p class=" wow fadeIn"> Enter Your Plant's Info here :-</p> <br>
     <form method="" action="http://snapdragon7.pythonanywhere.com" id="form">
@@ -68,15 +91,38 @@
         </table>
     </form>
     <?php
-          if(isset($_POST['submit'])){
-              $n = $_POST['N'];
-              $p = $_POST['P'];
-              $k = $_POST['K'];
-
-              echo "<script> document.location.href='http://snapdragon7.pythonanywhere.com'; </script>";
-          }
+        if(isset($_GET['N'])){
+          $n = $_GET['N'];
+          $p = $_GET['P'];
+          $k = $_GET['K'];
+          $npred = $_GET['NPred'];
+          $ppred = $_GET['PPred'];
+          $kpred = $_GET['KPred'];
+          
+          echo '<p class="wow fadeInLeft"> Check Your Plant\'s Health Here :- </p>    
+    <div class="container wow fadeInLeft">
+        <div class="row">
+          <div class="col-6 col-sm-4">
+            <h3> Nitrogen </h3>
+            <progress name="npk" id="npk" class="" value="80" max="100"> </progress>
+            <p> Great </p>
+        </div>
+        <div class="col-6 col-sm-4"> 
+            <h3> Phosphate </h3>
+            <progress name="water" id="water" class="" value="30" max="100"> </progress> 
+            <p> Bad </p>
+        </div>
+        <div class="col-6 col-sm-4">
+            <h3> Pottasium </h3>
+            <progress name="ph" id="ph" class="" value="50" max="100"> </progress>
+            <p> Good </p>
+        </div>
+        </div>
+      </div>
+      <hr>';
         }
     ?>
+
     </center>
  <!-- FOOTER -->
  <footer>
